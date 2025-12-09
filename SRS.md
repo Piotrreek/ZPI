@@ -167,19 +167,19 @@ System musi posiadać nowoczesny, responsywny interfejs webowy.
 
 #### 3.1.1. Koncepcja UI Modułu Onboarding (Widok Pracownika)
 *   **Główny Dashboard:** Centralny element to "Ścieżka Rozwoju" wizualizowana jako mapa lub linia czasu z punktami milowymi (Kamienie Milowe).
-*   **Panel Zadania (Quest Detail):** Po kliknięciu w punkt na mapie, otwiera się modal z opisem zadania, sekcją "Dobre praktyki", linkami do dokumentacji oraz statusem weryfikacji (np. "Oczekiwanie na Commit").
-*   **Grywalizacja:** Pasek postępu (Level bar), licznik punktów XP, wirtualna gablota z odznakami (np. "First Commit", "Bug Hunter").
+*   **Panel Zadania:** Po kliknięciu w punkt na mapie, otwiera się modal z opisem zadania, sekcją "Dobre praktyki", linkami do dokumentacji oraz statusem weryfikacji (np. "Oczekiwanie na Commit").
+*   **Grywalizacja:** Pasek postępu, licznik punktów XP, wirtualna gablota z odznakami (np. "First Commit", "Bug Hunter").
 
 **Makieta poglądowa (Dashboard Pracownika):**
-![Makieta Dashboardu Pracownika](/Users/janpiaskowy/.gemini/antigravity/brain/3ee28abf-bfb1-4175-a133-69e7b5b79ecb/mockup_employee_dashboard_1765306451988.png)
+![Makieta Dashboardu Pracownika](./IMGs/hr_dashboard2.png)
 
 #### 3.1.2. Koncepcja UI Modułu HR (Widok Administratora)
 *   **Content Calendar:** Widok kalendarza (miesięczny) z kafelkami reprezentującymi zaplanowane posty. Obsługa techniki Drag&Drop do przesuwania postów między dniami.
-*   **Kreator Posta:** Formularz "Wysiwyg" z podglądem na żywo (Live Preview) dla formatów LinkedIn (Desktop/Mobile), Facebook i Instagram.
+*   **Kreator Posta:** Formularz z podglądem na żywo dla formatów LinkedIn (Desktop/Mobile), Facebook i Instagram.
 *   **Centrum Akceptacji:** Lista wsadów od pracowników (Historie Sukcesu) oczekujących na moderację i publikację przez HR.
 
 **Makieta poglądowa (Panel HR - Kalendarz):**
-![Makieta Panelu HR](/Users/janpiaskowy/.gemini/antigravity/brain/3ee28abf-bfb1-4175-a133-69e7b5b79ecb/mockup_hr_dashboard_1765306972578.png)
+![Makieta Panelu HR](./IMGs/hr_dashboard.png)
 
 ### 3.2. Interfejsy Programowe (API)
 Specyfikacja techniczna punktów styku z systemami zewnętrznymi.
@@ -196,7 +196,7 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
 *   **Instagram Graph API:** Publikacja zdjęć (wymaga specyficznego formatowania obrazów - aspect ratio).
 
 #### 3.2.3. System Powiadomień
-*   **Slack/Teams API:** System będzie wysyłał powiadomienia (bot notifications) do użytkowników o:
+*   **Slack/Teams API:** System będzie wysyłał powiadomienia do użytkowników o:
     *   Nowych zadaniach onboardingowych.
     *   Zaliczeniu zadania.
     *   Konieczności akceptacji posta (dla HR).
