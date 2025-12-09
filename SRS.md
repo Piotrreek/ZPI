@@ -432,28 +432,48 @@ Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 
 
 ## 5. Atrybuty Jakościowe (Wymagania Niefunkcjonalne)
 
-### 5.1. Użyteczność (Usability) - Priorytet 1
+#### Użyteczność (Usability) - Priorytet 1
 *   **Czas nauki:** Nowy pracownik musi być w stanie rozpocząć realizację pierwszego zadania w czasie poniżej **30 minut** od pierwszego zalogowania, bez instrukcji zewnętrznej.
 *   **Wskaźnik sukcesu:** 90% użytkowników testowych musi zakończyć proces "Pierwszego Posta" (EB) lub "Pierwszego Questa" (ONB) bez błędów krytycznych.
 *   **Interfejs:** Zgodny z WCAG 2.1 na poziomie AA (kontrast, obsługa klawiaturą).
 
-### 5.2. Bezpieczeństwo (Security) - Priorytet 2
+#### Bezpieczeństwo (Security) - Priorytet 2
 *   **Uwierzytelnianie:** Obowiązkowe SSO (Single Sign-On) przez Azure AD. Brak lokalnych haseł w bazie danych systemu.
 *   **Separacja danych:** Dane (`tenant isolation`) różnych firm (jeśli SaaS) lub różnych działów muszą być logicznie odseparowane.
 *   **Szyfrowanie:** Wszystkie dane wrażliwe (tokeny API social media, dane osobowe) muszą być szyfrowane w bazie danych (AES-256).
 
-### 5.3. Niezawodność (Reliability) - Priorytet 3
+#### Niezawodność (Reliability) - Priorytet 3
 *   **Odporność na awarie zewnętrzne:** Awaria API LinkedIn nie może powodować "wyłożenia się" całego systemu. System musi buforować zapytania i ponawiać je (Queue + Retry).
 *   **RPO (Recovery Point Objective):** Maksymalnie 1 godzina utraty danych w przypadku awarii bazy.
 *   **RTO (Recovery Time Objective):** Przywrócenie działania systemu w czasie poniżej 4 godzin.
 
-### 5.4. Wydajność (Performance)
+#### Wydajność (Performance)
 *   **Czas odpowiedzi:** API systemu musi odpowiadać w czasie < 200ms dla 95% zapytań.
 *   **Skalowalność:** Obsługa minimum 500 jednoczesnych użytkowników bez degradacji wydajności.
 *   **Przetwarzanie w tle:** Przetworzenie webhooka z GitHuba i aktualizacja statusu zadania musi nastąpić w ciągu maksymalnie 30 sekund.
 
-### 5.5. Modyfikowalność (Modifiability)
+#### Modyfikowalność (Modifiability)
 *   **Architektura:** System musi być zbudowany w oparciu o luźno powiązane komponenty, aby wymiana modułu integracji z GitHubem na GitLab zajęła nie więcej niż 40 roboczogodzin.
+
+### 5.1. Priorytetyzacja Wymagań
+
+Dla wszystkich zidentyfikowanych wymagań niefunkcjonalnych zastosowano model priorytetyzacji uwzględniający wpływ na użytkownika, koszty implementacji oraz ryzyko techniczne.
+
+| ID | Kategoria | Nazwa Wymagania | Korzyść | Kara | Koszt | Ryzyko | Decyzja MVP |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **NF-US-01** | Użyteczność | **Czas nauki < 30 minut** | 13 | 8 | 5 | 3 | **TAK** |
+| **NF-US-02** | Użyteczność | Wskaźnik sukcesu 90% | 8 | 8 | 3 | 2 | **TAK** |
+| **NF-US-03** | Użyteczność | WCAG 2.1 Level AA | 5 | 8 | 8 | 3 | **TAK** |
+| **NF-SEC-01** | Bezpieczeństwo | **SSO Azure AD (obowiązkowe)** | 13 | 13 | 5 | 2 | **TAK** |
+| **NF-SEC-02** | Bezpieczeństwo | **Separacja danych (Tenant Isolation)** | 13 | 13 | 8 | 5 | **TAK** |
+| **NF-SEC-03** | Bezpieczeństwo | **Szyfrowanie AES-256** | 13 | 13 | 3 | 2 | **TAK** |
+| **NF-REL-01** | Niezawodność | **Queue + Retry dla API** | 13 | 8 | 8 | 3 | **TAK** |
+| **NF-REL-02** | Niezawodność | **RPO ≤ 1 godzina** | 8 | 13 | 8 | 8 | **TAK** |
+| **NF-REL-03** | Niezawodność | **RTO ≤ 4 godziny** | 8 | 13 | 5 | 5 | **TAK** |
+| **NF-PERF-01** | Wydajność | **Czas odpowiedzi API < 200ms (p95)** | 8 | 5 | 5 | 3 | **TAK** |
+| **NF-PERF-02** | Wydajność | **Skalowanie do 500 użytkowników** | 8 | 8 | 8 | 5 | **TAK** |
+| **NF-PERF-03** | Wydajność | **Webhook <30 sekund** | 13 | 8 | 5 | 3 | **TAK** |
+| **NF-MOD-01** | Modyfikowalność | **Architektura modularna (40 rh)** | 5 | 3 | 8 | 5 | **TAK** |
 
 ---
 
