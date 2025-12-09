@@ -383,9 +383,7 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
     *   chcę testować różne wersje komunikatów,
     *   abym mógł maksymalizować zasięg bez ręcznego pisania wielu wersji.
 *   **Cel Biznesowy:** Zwiększenie współczynnika zaangażowania (Engagement Rate) o 15% poprzez lepsze dopasowanie treści.
-*   **Decyzja:** **ODRZUCONO W MVP**
-*   **Powód odrzucenia:** Wysoki koszt implementacji (wymaga zaawansowanego ML) przy niepewnej wartości na starcie.
-*   **Hipotetyczne Kryteria Akceptacji:**
+*   **Kryteria Akceptacji:**
     *   **SCENARIUSZ:** Generowanie wariantów
         *   **GIVEN** użytkownik ma gotowy szkic posta.
         *   **WHEN** klika "Generuj warianty A/B".
@@ -399,9 +397,7 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
     *   chcę łatwo zmieniać kolejność zadań wdrożeniowych metodą "przeciągnij i upuść",
     *   abym nie musiał prosić IT o każdą zmianę w procesie.
 *   **Cel Biznesowy:** Zwiększenie elastyczności działu HR w modyfikowaniu procesów.
-*   **Decyzja:** **ODRZUCONO W MVP**
-*   **Powód odrzucenia:** W fazie MVP wystarczy prosta konfiguracja przez pliki YAML/JSON. Edytor wizualny to "Gold Plating".
-*   **Hipotetyczne Kryteria Akceptacji:**
+*   **Kryteria Akceptacji:**
     *   **SCENARIUSZ:** Rysowanie ścieżki
         *   **GIVEN** HR otwiera kreator wizualny.
         *   **WHEN** przeciąga klocek "Zadanie Git" na oś czasu.
@@ -414,7 +410,7 @@ Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji zdef
 
 Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 13).
 
-| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik WSJF | Decyzja MVP |
+| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik | Decyzja MVP |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **US-EB-01** | EB | **Auto-generowanie postów z ofert** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
 | **US-EB-02** | EB | Harmonogramowanie publikacji | 13 | 13 | 5 | 3 | **3.25** | **TAK** |
