@@ -83,6 +83,7 @@ Aby zapewnić jednoznaczne zrozumienie dokumentu, wprowadza się następujące d
 *   **Rozdział 4** zawiera szczegółowe wymagania funkcjonalne w formie Historyjek Użytkownika (User Stories).
 *   **Rozdział 5** określa wymagania niefunkcjonalne (Atrybuty Jakościowe).
 *   **Rozdział 6** przedstawia analizę rynku i konkurencji.
+*   **Rozdział 7** zawiera dodatkowe informacje, takie jak persony użytkowników i kwestie do rozwiązania.
 
 ## 2. Opis Ogólny
 
@@ -385,3 +386,44 @@ graph LR
     UC_EditPost -. << extend >> .-> UC_GenPost
     UC_Story -. << extend >> .-> UC_GenPost
 ```
+
+### 7.2. Dodatek B: Persony Użytkowników
+
+#### Rola: Specjalista HR / Employer Branding
+**1. Kasia (Specjalista EB)**
+*   **Wiek:** 29 lat.
+*   **Cele:** Chce szybko tworzyć dużo treści na LinkedIn, aby "przykryć" negatywne opinie o firmie.
+*   **Bóle:** Skakanie między Excelem a LinkedInem, brak czasu na pisanie kreatywnych postów.
+*   **Cytat:** *"Chciałabym, żeby posty pisały się same, a ja tylko klikała 'Publikuj'."*
+
+**2. Piotr (Rekruter Techniczny)**
+*   **Wiek:** 35 lat.
+*   **Cele:** Chce przyciągnąć seniorów, pokazując im "mięso" technologiczne w postach.
+*   **Bóle:** Nie zna się na kodzie, więc boi się pisać o technologiach, żeby nie wyjść na ignoranta.
+*   **Cytat:** *"Potrzebuję narzędzia, które wyciągnie historie od programistów, bo oni sami do mnie nie przyjdą."*
+
+#### Rola: Pracownik (New Hire)
+**1. Kamil (Junior Developer)**
+*   **Wiek:** 22 lata (student/absolwent).
+*   **Cele:** Chce jak najszybciej dowieść pierwszego taska i nie zadawać głupich pytań.
+*   **Bóle:** Paraliż przed pierwszym commitem ("A co jak zepsuję produkcję?"). Gubienie się w dokumentacji.
+*   **Cytat:** *"Nie wiem, czy to co robię jest dobrze ustawione."*
+
+**2. Julia (Senior Developer - nowa w firmie)**
+*   **Wiek:** 31 lat.
+*   **Cele:** Szybki setup środowiska i dostępów, bez zbędnych szkoleń BHP i "integracji na siłę".
+*   **Bóle:** Irytuje ją grywalizacja dla dzieci ("jakieś odznaki?"), chce konkretów.
+*   **Cytat:** *"Dajcie mi dostęp do repo i nie każcie oglądać 3-godzinnych filmów o wizji prezesa."*
+
+#### Rola: Lider Zespołu
+**1. Marta (Team Leader)**
+*   **Wiek:** 28 lat.
+*   **Cele:** Chce wiedzieć, na jakim etapie jest nowy pracownik, bez pytania go co 5 minut.
+*   **Bóle:** Konieczność ręcznego sprawdzania, czy juniorzy skonfigurowali już środowisko.
+*   **Cytat:** *"Czy Kamil już zrobił pusha, czy dalej walczy z dockerem?"*
+
+**2. Marcin (Engineering Manager)**
+*   **Wiek:** 40 lat.
+*   **Cele:** Skrócenie czasu wdrożenia (TtP) o 30% w skali roku.
+*   **Bóle:** Brak twardych danych – nie wie, dlaczego w zespole A wdrożenie trwa 2 tygodnie, a w zespole B miesiąc.
+*   **Cytat:** *"Pokażcie mi liczby, a nie przeczucia."*
