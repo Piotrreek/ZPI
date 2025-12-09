@@ -333,3 +333,55 @@ Przeprowadzono analizę konkurencyjnych rozwiązań na rynku, aby zidentyfikowa�
 ### 6.2. Wnioski Strategiczne
 1.  **Unique Selling Point (USP):** Na rynku brakuje narzędzia, które "domyka pętlę" między rekrutacją a wdrożeniem. Narzędzia EB kończą się na publikacji posta, a narzędzia onboardingowe zaczynają się pierwszego dnia pracy. Nasz system łączy te światy, wykorzystując treści z rekrutacji w onboardingu i historie z onboardingu w rekrutacji.
 2.  **Szansa Rynkowa:** Automatyzacja "nudnej roboty" (pisanie postów) dla HR oraz automatyzacja "niańczenia juniorów" dla Senior Devów to silne argumenty sprzedażowe.
+
+## 7. Dodatki
+
+### 7.1. Dodatek A: Diagram Przypadków Użycia
+
+Poniższy diagram przedstawia główne interakcje aktorów z systemem.
+
+```mermaid
+graph LR
+    subgraph "System Zarządzania Cyklem Życia Pracownika"
+        direction TB
+        
+        %% Onboarding Module
+        UC_Login([Logowanie SSO])
+        UC_Quest([Realizacja Questa])
+        UC_Verify([Auto-Weryfikacja Git])
+        UC_Progress([Sprawdzenie Rankingu])
+        
+        %% EB Module
+        UC_GenPost([Generowanie Posta AI])
+        UC_EditPost([Edycja Treści])
+        UC_Publish([Publikacja])
+        UC_Analytics([Analiza Zasięgów])
+        UC_Story([Zgłoszenie Historii])
+    end
+
+    %% Actors
+    Employee[Pracownik] 
+    HR[HR Specjalista]
+    Leader[Lider]
+
+    %% Relationships - Employee
+    Employee --> UC_Quest
+    Employee --> UC_Progress
+    Employee --> UC_Story
+    
+    %% Relationships - HR
+    HR --> UC_GenPost
+    HR --> UC_Publish
+    HR --> UC_Analytics
+
+    %% Relationships - Leader
+    Leader --> UC_Progress
+
+    %% Includes & Extends (Simulation)
+    UC_Quest -. << include >> .-> UC_Login
+    UC_Quest -. << include >> .-> UC_Verify
+    
+    UC_Publish -. << include >> .-> UC_Login
+    UC_EditPost -. << extend >> .-> UC_GenPost
+    UC_Story -. << extend >> .-> UC_GenPost
+```
