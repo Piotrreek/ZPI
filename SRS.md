@@ -427,3 +427,24 @@ graph LR
 *   **Cele:** Skrócenie czasu wdrożenia (TtP) o 30% w skali roku.
 *   **Bóle:** Brak twardych danych – nie wie, dlaczego w zespole A wdrożenie trwa 2 tygodnie, a w zespole B miesiąc.
 *   **Cytat:** *"Pokażcie mi liczby, a nie przeczucia."*
+
+
+### 7.3. Dodatek C: Kwestie do Rozwiązania (Issues List)
+
+Lista pytań i niejasności zidentyfikowanych podczas analizy, które wymagają decyzji w późniejszych fazach.
+
+1.  **Szczegółowość Uprawnień (Granularity):**
+    *   *Pytanie:* Czy Lider Zespołu powinien widzieć postępy pracowników z innych działów?
+    *   *Status:* TBD. Wymaga konsultacji z działem prawnym/RODO.
+
+2.  **Obsługa Błędów Integracji Git:**
+    *   *Pytanie:* Co się dzieje, gdy użytkownik zmieni nazwę repozytorium w trakcie trwania onboardingu?
+    *   *Propozycja:* Blokada zmiany nazwy lub mechanizm wymuszający rekonfigurację webhooka.
+
+3.  **Model AI dla Generowania Treści:**
+    *   *Pytanie:* Czy korzystamy z publicznego API OpenAI (koszty, prywatność danych), czy wdrażamy lokalny model (Llama/Mistral)?
+    *   *Decyzja:* MVP: OpenAI API (ze względu na czas), Docelowo: Model lokalny.
+
+4.  **Budżet Infrastruktury:**
+    *   *Ryzyko:* Koszt Azure AD dla zewnętrznych konsultantów może przekroczyć budżet 500 PLN.
+    *   *Status:* Do weryfikacji.
