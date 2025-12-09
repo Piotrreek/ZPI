@@ -73,6 +73,7 @@ Aby zapewnić jednoznaczne zrozumienie dokumentu, wprowadza się następujące d
 
 *   **TtP (Time-to-Productivity):** Metryka określająca czas od pierwszego dnia pracy pracownika do momentu, w którym osiąga on oczekiwany poziom wydajności (np. samodzielnie realizuje zadania z backlogu).
 *   **EB (Employer Branding):** Zespół działań mających na celu budowanie wizerunku pracodawcy jako "pracodawcy z wyboru".
+*   **ONB (Onboarding):** Proces wdrożenia nowego pracownika obejmujący zadania, materiały szkoleniowe i mechanizmy weryfikacji, których celem jest szybkie osiągnięcie pełnej produktywności (Time-to-Productivity).
 *   **Quest:** Pojedyncze zadanie w procesie onboardingu, sformatowane w języku grywalizacji, posiadające cel, opis i nagrodę (XP).
 *   **XP (Experience Points):** Punkty doświadczenia przyznawane pracownikowi za realizację zadań w systemie.
 *   **MVP (Minimum Viable Product):** Wersja produktu z minimalnym zestawem cech wystarczającym do zadowolenia wczesnych klientów i zebrania informacji zwrotnych.
