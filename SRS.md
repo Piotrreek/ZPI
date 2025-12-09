@@ -287,3 +287,30 @@ Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany 
     *   Wyniki są agregowane w panelu HR.
 
 ---
+
+## 5. Atrybuty Jakościowe (Wymagania Niefunkcjonalne)
+
+### 5.1. Użyteczność (Usability) - Priorytet 1
+*   **Czas nauki:** Nowy pracownik musi być w stanie rozpocząć realizację pierwszego zadania w czasie poniżej **30 minut** od pierwszego zalogowania, bez instrukcji zewnętrznej.
+*   **Wskaźnik sukcesu:** 90% użytkowników testowych musi zakończyć proces "Pierwszego Posta" (EB) lub "Pierwszego Questa" (ONB) bez błędów krytycznych.
+*   **Interfejs:** Zgodny z WCAG 2.1 na poziomie AA (kontrast, obsługa klawiaturą).
+
+### 5.2. Bezpieczeństwo (Security) - Priorytet 2
+*   **Uwierzytelnianie:** Obowiązkowe SSO (Single Sign-On) przez Azure AD. Brak lokalnych haseł w bazie danych systemu.
+*   **Separacja danych:** Dane (`tenant isolation`) różnych firm (jeśli SaaS) lub różnych działów muszą być logicznie odseparowane.
+*   **Szyfrowanie:** Wszystkie dane wrażliwe (tokeny API social media, dane osobowe) muszą być szyfrowane w bazie danych (AES-256).
+
+### 5.3. Niezawodność (Reliability) - Priorytet 3
+*   **Odporność na awarie zewnętrzne:** Awaria API LinkedIn nie może powodować "wyłożenia się" całego systemu. System musi buforować zapytania i ponawiać je (Queue + Retry).
+*   **RPO (Recovery Point Objective):** Maksymalnie 1 godzina utraty danych w przypadku awarii bazy.
+*   **RTO (Recovery Time Objective):** Przywrócenie działania systemu w czasie poniżej 4 godzin.
+
+### 5.4. Wydajność (Performance)
+*   **Czas odpowiedzi:** API systemu musi odpowiadać w czasie < 200ms dla 95% zapytań.
+*   **Skalowalność:** Obsługa minimum 500 jednoczesnych użytkowników bez degradacji wydajności.
+*   **Przetwarzanie w tle:** Przetworzenie webhooka z GitHuba i aktualizacja statusu zadania musi nastąpić w ciągu maksymalnie 30 sekund.
+
+### 5.5. Modyfikowalność (Modifiability)
+*   **Architektura:** System musi być zbudowany w oparciu o luźno powiązane komponenty, aby wymiana modułu integracji z GitHubem na GitLab zajęła nie więcej niż 40 roboczogodzin.
+
+---
