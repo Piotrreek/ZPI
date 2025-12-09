@@ -314,3 +314,22 @@ Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany 
 *   **Architektura:** System musi być zbudowany w oparciu o luźno powiązane komponenty, aby wymiana modułu integracji z GitHubem na GitLab zajęła nie więcej niż 40 roboczogodzin.
 
 ---
+
+## 6. Odkrywanie i Analiza Wymagań
+
+### 6.1. Analiza Porównawcza (Benchmarking)
+
+Przeprowadzono analizę konkurencyjnych rozwiązań na rynku, aby zidentyfikować pozycję WorkLife Cycle Platform.
+
+| Cecha / System | **System Zarządzania Cyklem Życia Pracownika (Nasz Projekt)** | **Hootsuite / Buffer** | **Gamfi / Monday.com** | **Rozwiązania "In-house" (Wiki)** |
+| :--- | :--- | :--- | :--- | :--- |
+| **Główny Fokus** | **Hybryda: Rekrutacja + Wdrożenie** | Zarządzanie Social Media | Grywalizacja / Zarządzanie Projektami | Baza Wiedzy |
+| **Import Ofert Pracy** | **TAK (Automatyczny)** | NIE (Ręczne kopiowanie) | NIE | NIE |
+| **Weryfikacja Kodem (Git)** | **TAK (Natywna)** | NIE | NIE (Wymaga customowych skryptów) | NIE |
+| **Grywalizacja** | **TAK (Questy, XP, Odznaki)** | NIE | TAK (Rozbudowana) | NIE |
+| **Analityka TtP** | **TAK (Konkretne KPI HR)** | NIE | Częściowo | NIE |
+| **Cena** | Niski koszt wdrożenia (MVP) | Wysoki abonament Enterprise | Wysoki koszt licencji | Koszt utrzymania przez dział IT |
+
+### 6.2. Wnioski Strategiczne
+1.  **Unique Selling Point (USP):** Na rynku brakuje narzędzia, które "domyka pętlę" między rekrutacją a wdrożeniem. Narzędzia EB kończą się na publikacji posta, a narzędzia onboardingowe zaczynają się pierwszego dnia pracy. Nasz system łączy te światy, wykorzystując treści z rekrutacji w onboardingu i historie z onboardingu w rekrutacji.
+2.  **Szansa Rynkowa:** Automatyzacja "nudnej roboty" (pisanie postów) dla HR oraz automatyzacja "niańczenia juniorów" dla Senior Devów to silne argumenty sprzedażowe.
