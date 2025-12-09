@@ -84,3 +84,78 @@ Aby zapewnić jednoznaczne zrozumienie dokumentu, wprowadza się następujące d
 *   **Rozdział 5** określa wymagania niefunkcjonalne (Atrybuty Jakościowe).
 *   **Rozdział 6** przedstawia analizę rynku i konkurencji.
 
+## 2. Opis Ogólny
+
+### 2.1. Główne Funkcje Produktu
+Architektura systemu jest modułowa. Główne bloki funkcjonalne to:
+
+1.  **Generator Treści (Content Engine):**
+    *   Pobieranie danych z ofert pracy (tytuł, opis, wymagania).
+    *   Przetwarzanie danych na posty social media (tekst + grafika).
+    *   Mechanizm szablonów postów.
+2.  **Harmonogram i Publikacja (Scheduler):**
+    *   Kalendarz publikacji (widok miesięczny/tygodniowy).
+    *   Kolejkowanie postów.
+    *   Obsługa błędów API (retry mechanism).
+3.  **Silnik Onboardingowy (Gamification Engine):**
+    *   Drzewo zadań (ścieżki rozwoju).
+    *   System nagród i odznak.
+    *   Integratory z zewnętrznymi API (GitHub, GitLab, Jira).
+4.  **Analityka i Raportowanie (Dashboard):**
+    *   Agregacja danych z social media (API Facebook/LinkedIn).
+    *   wizualizacja postępów pracowników (wykresy burndown, paski postępu).
+
+### 2.2. Klasy Użytkowników i Persony
+Zidentyfikowano trzy główne grupy użytkowników oraz przygotowano dla nich szczegółowe persony.
+
+#### 2.2.1. Klasa: Dział HR / Rekrutacja
+Użytkownicy odpowiedzialni za wizerunek firmy i procesy kadrowe.
+*   **Persona:** Kasia, Specjalista ds. Employer Brandingu (29 lat).
+    *   *Kontekst:* Pracuje w średniej firmie IT (300 os.). Jest kreatywna, ale przeciążona pracą operacyjną.
+    *   *Ból:* "Mam świetne historie od ludzi, ale nie mam czasu ich spisać i opublikować. Robienie grafik zajmuje wieki."
+    *   *Cel:* Zbudować silną markę pracodawcy przy minimalnym wysiłku manualnym.
+*   **Persona:** Piotr, Specjalista HR (39 lat).
+    *   *Kontekst:* Odpowiada za procesy twarde i miękkie. Analityczny umysł.
+    *   *Ból:* Brak twardych danych dla zarządu. Nie wie, czy onboarding działa, dopóki ktoś się nie zwolni.
+    *   *Cel:* Zmierzyć ROI z onboardingu i EB.
+
+#### 2.2.2. Klasa: Liderzy Zespołów Technicznych
+Osoby zarządzające zespołami, do których trafiają nowi pracownicy.
+*   **Persona:** Marta, Engineering Manager (35 lat).
+    *   *Kontekst:* Zarządza zespołem 10 programistów. Skupia się na delivery.
+    *   *Ból:* Nowy pracownik zabiera jej 20% czasu w pierwszych tygodniach na te same pytania ("gdzie jest dokumentacja?", "na którym branchu pracujemy?").
+    *   *Cel:* Szybko wdrożyć "świeżaka" do robienia ticketów, bez bycia niańką.
+
+#### 2.2.3. Klasa: Pracownicy (Użytkownicy Końcowi)
+Osoby przechodzące proces onboardingu.
+*   **Persona:** Kamil, Mid Java Developer (27 lat).
+    *   *Kontekst:* Zmienił pracę, chce się wykazać.
+    *   *Ból:* Chaos w dokumentacji. Nie wie, co ma robić w pierwszym tygodniu. Czuje się zagubiony.
+    *   *Cel:* Jak najszybciej zrobić pierwszy commit na produkcję i poczuć się potrzebnym.
+
+### 2.3. Ograniczenia Projektowe i Implementacyjne
+Projekt musi zostać zrealizowany przy uwzględnieniu następujących sztywnych ograniczeń:
+
+1.  **Szczegółowe Ograniczenia Technologiczne:**
+    *   **Backend:** Preferowany stos technologiczny zgodny z kompetencjami zespołu (np. Python/Django lub Node.js).
+    *   **Infrastruktura:** Wdrożenie w chmurze AWS lub Azure (z wykorzystaniem darmowych tierów w fazie MVP).
+    *   **Baza Danych:** Relacyjna baza danych (PostgreSQL) do przechowywania danych strukturalnych.
+    *   **Integracja Git:** System musi obsługiwać co najmniej jednego głównego providera (GitHub Enterprise).
+
+2.  **Limity Zewnętrzne (API Limits):**
+    *   System musi uwzględniać limity publikacji API LinkedIn (ok. 150 postów/dzień na aplikację) oraz wygaśnięcie tokenów autoryzacyjnych (60 dni). Wymagane jest wdrożenie mechanizmu odświeżania tokenów.
+
+3.  **Ograniczenia Prawne (RODO/GDPR):**
+    *   Bezwzględny wymóg przechowywania danych osobowych na serwerach w EOG (Frankfurt/Dublin).
+    *   Implementacja prawa do bycia zapomnianym (funkcja "Hard Delete" danych kandydata/pracownika).
+    *   Wymuszone zbieranie zgód (Consent) pracowników przed publikacją ich wizerunku w module EB.
+
+4.  **Ograniczenia Budżetowe:**
+    *   Całkowity miesięczny koszt infrastruktury dla MVP nie może przekroczyć **500 PLN ($120)**. Wymaga to optymalizacji użycia zasobów chmurowych (np. serverless, kontenery spot).
+
+### 2.4. Założenia Projektowe
+*   **Z1:** Organizacja posiada subskrypcję Microsoft 365 / Azure AD, która posłuży jako dostawca tożsamości (SSO).
+*   **Z2:** Pracownicy techniczni nie będą stawiać oporu przed "grywalizacją" (nie uznają jej za infantylną), pod warunkiem, że zadania będą merytoryczne.
+*   **Z3:** LinkedIn pozostanie dominującą platformą dla rekrutacji B2B, a jego API nie ulegnie drastycznym zmianom (Breaking Changes) w ciągu najbliższych 12 miesięcy.
+
+---
