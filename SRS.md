@@ -159,3 +159,46 @@ Projekt musi zostać zrealizowany przy uwzględnieniu następujących sztywnych 
 *   **Z3:** LinkedIn pozostanie dominującą platformą dla rekrutacji B2B, a jego API nie ulegnie drastycznym zmianom (Breaking Changes) w ciągu najbliższych 12 miesięcy.
 
 ---
+
+## 3. Wymagania Dotyczące Interfejsów Zewnętrznych
+
+### 3.1. Interfejsy Użytkownika (UI)
+System musi posiadać nowoczesny, responsywny interfejs webowy.
+
+#### 3.1.1. Koncepcja UI Modułu Onboarding (Widok Pracownika)
+*   **Główny Dashboard:** Centralny element to "Ścieżka Rozwoju" wizualizowana jako mapa lub linia czasu z punktami milowymi (Kamienie Milowe).
+*   **Panel Zadania (Quest Detail):** Po kliknięciu w punkt na mapie, otwiera się modal z opisem zadania, sekcją "Dobre praktyki", linkami do dokumentacji oraz statusem weryfikacji (np. "Oczekiwanie na Commit").
+*   **Grywalizacja:** Pasek postępu (Level bar), licznik punktów XP, wirtualna gablota z odznakami (np. "First Commit", "Bug Hunter").
+
+**Makieta poglądowa (Dashboard Pracownika):**
+![Makieta Dashboardu Pracownika](/Users/janpiaskowy/.gemini/antigravity/brain/3ee28abf-bfb1-4175-a133-69e7b5b79ecb/mockup_employee_dashboard_1765306451988.png)
+
+#### 3.1.2. Koncepcja UI Modułu HR (Widok Administratora)
+*   **Content Calendar:** Widok kalendarza (miesięczny) z kafelkami reprezentującymi zaplanowane posty. Obsługa techniki Drag&Drop do przesuwania postów między dniami.
+*   **Kreator Posta:** Formularz "Wysiwyg" z podglądem na żywo (Live Preview) dla formatów LinkedIn (Desktop/Mobile), Facebook i Instagram.
+*   **Centrum Akceptacji:** Lista wsadów od pracowników (Historie Sukcesu) oczekujących na moderację i publikację przez HR.
+
+**Makieta poglądowa (Panel HR - Kalendarz):**
+![Makieta Panelu HR](/Users/janpiaskowy/.gemini/antigravity/brain/3ee28abf-bfb1-4175-a133-69e7b5b79ecb/mockup_hr_dashboard_1765306972578.png)
+
+### 3.2. Interfejsy Programowe (API)
+Specyfikacja techniczna punktów styku z systemami zewnętrznymi.
+
+#### 3.2.1. Integracja z Repozytoriami (GitHub/GitLab API)
+System będzie nasłuchiwał na zdarzenia (Webhooks).
+*   **Endpoint:** `POST /api/webhooks/github`
+*   **Payload:** Dane JSON zawierające informacje o `push_event`, `pull_request`, `commit_message`, `author_email`.
+*   **Logika:** System parsuje wiadomość commita w poszukiwaniu identyfikatora zadania (np. `[QUEST-101]`) i na tej podstawie aktualizuje status w bazie danych.
+
+#### 3.2.2. Integracja z Social Media
+*   **LinkedIn API (`/v2/ugcPosts`):** Używane do publikacji treści tekstowych i graficznych na profilach firmowych. Wymaga obsługi protokołu OAuth 2.0.
+*   **Facebook Graph API (`/feed`):** Publikacja postów na stronach (Pages).
+*   **Instagram Graph API:** Publikacja zdjęć (wymaga specyficznego formatowania obrazów - aspect ratio).
+
+#### 3.2.3. System Powiadomień
+*   **Slack/Teams API:** System będzie wysyłał powiadomienia (bot notifications) do użytkowników o:
+    *   Nowych zadaniach onboardingowych.
+    *   Zaliczeniu zadania.
+    *   Konieczności akceptacji posta (dla HR).
+
+---
