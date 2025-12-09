@@ -20,7 +20,9 @@
 ## 1. Wstęp
 
 ### 1.1. Cel Dokumentu
-Celem niniejszego dokumentu Specyfikacji Wymagań Oprogramowania (SRS) jest szczegółowe zdefiniowanie wymagań funkcjonalnych i niefunkcjonalnych dla zintegrowanej platformy informatycznej wspierającej zarządzanie cyklem życia pracownika (Employee Lifecycle Management). System ten, roboczo nazwany "System Zarządzania Cyklem Życia Pracownika", ma na celu zintegrowanie procesów przyciągania talentów (Employer Branding) z ich efektywnym wdrożeniem i rozwojem (Onboarding).
+Celem niniejszego dokumentu Specyfikacji Wymagań Oprogramowania (SRS) jest szczegółowe zdefiniowanie wymagań funkcjonalnych i niefunkcjonalnych dla zintegrowanej platformy informatycznej wspierającej zarządzanie cyklem życia pracownika (Employee Lifecycle Management).
+
+Dokument dotyczy systemu **"System Zarządzania Cyklem Życia Pracownika" w wersji 1.0 (MVP)**. System ten ma na celu zintegrowanie procesów przyciągania talentów (Employer Branding) z ich efektywnym wdrożeniem i rozwojem (Onboarding).
 
 Dokument ten jest przeznaczony dla:
 *   **Zespołu Deweloperskiego:** Jako techniczna mapa drogowa implementacji, definiująca zachowanie systemu, interfejsy i ograniczenia.
@@ -206,9 +208,21 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
 
 ## 4. Wymagania Funkcjonalne
 
+Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany według modułów i priorytetyzowany metodą MoSCoW.
+
+### 4.1. Moduł Employer Branding (EB)
+
 #### **[US-EB-01] Automatyczne generowanie postów z ofert pracy**
-*   **Opis:** System jako "Agent" monitoruje listę ofert pracy. Gdy pojawi się nowa oferta, automatycznie generuje szkic posta.
-*   **Kryteria Akceptacji (Gherkin):**
+*   **Tytuł:** Automatyczne tworzenie szkiców postów na podstawie nowych ofert pracy.
+*   **Opis:** System jako "Agent" monitoruje listę ofert pracy. Gdy pojawi się nowa oferta, automatycznie generuje szkic posta w mediach społecznościowych.
+*   **Historyjka Użytkownika:**
+    *   Jako Specjalista EB (Kasia),
+    *   chcę, aby system sam tworzył propozycje postów dla nowych ofert,
+    *   abym nie musiała tracić czasu na ręczne kopiowanie treści i wymyślanie opisów.
+*   **Cel Biznesowy:** Zwiększenie liczby publikacji promujących rekrutację (zasięg) oraz redukcja czasu HR na obsługę social media o 80%.
+*   **Warunki Wstępne:** W systemie rekrutacyjnym dodano nową, aktywną ofertę pracy. Użytkownik jest zalogowany jako HR.
+*   **Warunki Końcowe:** W panelu HR "Propozycje" widoczny jest nowy szkic posta gotowy do edycji/publikacji.
+*   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Wykrycie nowej oferty**
         *   **GIVEN** w systemie dodano nową ofertę pracy na stanowisko "Senior DevOps".
         *   **WHEN** proces "Content Generator" uruchamia się (np. co godzinę).
@@ -219,20 +233,38 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
         *   **THEN** system nie generuje posta i loguje ostrzeżenie dla administratora.
 
 #### **[US-EB-02] Harmonogramowanie i Multi-publikacja**
-*   **Opis:** Użytkownik może zaplanować publikację jednego posta na wiele platform (LinkedIn, FB, IG) jednym kliknięciem.
+*   **Tytuł:** Planowanie i jednoczesna publikacja postów na wielu platformach.
+*   **Opis:** Umożliwia zaplanowanie publikacji jednego posta na LinkedIn, Facebook i Instagram jednym kliknięciem.
+*   **Historyjka Użytkownika:**
+    *   Jako Specjalista EB (Kasia),
+    *   chcę opublikować ten sam post we wszystkich kanałach jednym kliknięciem,
+    *   abym mogła zarządzać spójną komunikacją bez logowania się do trzech różnych serwisów.
+*   **Cel Biznesowy:** Zwiększenie zasięgu poprzez obecność na wielu platformach przy zachowaniu niskiego nakładu pracy.
+*   **Warunki Wstępne:** Użytkownik ma przygotowany i zatwierdzony post. System posiada aktywne tokeny dostępu do API (LinkedIn, FB, IG).
+*   **Warunki Końcowe:** Post pojawia się na wybranych platformach społecznościowych o zaplanowanym czasie.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Publikacja natychmiastowa**
-        *   **WHEN** użytkownik klika "Publikuj teraz"
+        *   **GIVEN** użytkownik ma gotowy post w edytorze.
+        *   **WHEN** użytkownik klika "Publikuj teraz".
         *   **THEN** system wysyła żądania do wybranych API.
         *   **AND** zwraca status "Opublikowano" tylko jeśli wszystkie API odpowiedziały 200 OK.
-    *   **SCENARIUSZ 2: Obsługa błędu API (Reliability)**
+    *   **SCENARIUSZ 2: Obsługa błędu API**
         *   **GIVEN** API LinkedIn zwraca błąd 503 (Service Unavailable).
+        *   **WHEN** system próbuje opublikować post.
         *   **THEN** system oznacza post jako "Błąd publikacji".
-        *   **AND** automatycznie ponawia próbę za 5 minut (mechanizm exponential backoff).
+        *   **AND** automatycznie ponawia próbę za 5 minut.
         *   **AND** wysyła powiadomienie do użytkownika, jeśli po 3 próbach nadal jest błąd.
 
 #### **[US-EB-03] Import Historii Sukcesu (Employee Advocacy)**
-*   **Opis:** Formularz dla pracowników do zgłaszania swoich sukcesów (np. "Zrobiliśmy wdrożenie u klienta X"), które HR może zamienić w post.
+*   **Tytuł:** Zgłaszanie sukcesów pracowniczych do publikacji.
+*   **Opis:** Formularz dla pracowników umożliwiający zgłaszanie osiągnięć, które HR może łatwo przekształcić w materiał marketingowy.
+*   **Historyjka Użytkownika:**
+    *   Jako pracownik,
+    *   chcę w prosty sposób zgłosić sukces mojego zespołu (np. wdrożenie),
+    *   abym mógł zostać doceniony, a firma miała autentyczny content.
+*   **Cel Biznesowy:** Pozyskanie autentycznego contentu "od wewnątrz" (Employee Advocacy) w celu budowania wiarygodnego wizerunku eksperta.
+*   **Warunki Wstępne:** Pracownik jest zalogowany.
+*   **Warunki Końcowe:** Zgłoszenie trafia do "Poczekalni" w panelu HR. Po akceptacji powstaje szkic posta.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Zgłoszenie sukcesu**
         *   **GIVEN** pracownik wypełnia formularz "Podziel się sukcesem" (opis, zdjęcie).
@@ -243,8 +275,18 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
         *   **WHEN** wybiera opcję "Utwórz post AI".
         *   **THEN** system generuje roboczą wersję posta zgodną z tone-of-voice firmy.
 
+### 4.2. Moduł Onboarding (ONB)
+
 #### **[US-ONB-01] Interaktywne Questy Wdrożeniowe**
-*   **Opis:** Prezentacja listy zadań w formie grywalizowanej.
+*   **Tytuł:** Prezentacja zadań wdrożeniowych w formie grywalizacji.
+*   **Opis:** System prezentuje nowym pracownikom listę zadań (Questów) w atrakcyjnej formie graficznej, motywując ich do samodzielnej pracy.
+*   **Historyjka Użytkownika:**
+    *   Jako Nowy Pracownik (Kamil),
+    *   chcę widzieć jasną ścieżkę tego, co mam zrobić w pierwszym tygodniu,
+    *   abym nie czuł się zagubiony i nie musiał ciągle pytać lidera.
+*   **Cel Biznesowy:** Skrócenie czasu wdrożenia pracownika (TtP) poprzez jasną strukturę zadań i zwiększenie zaangażowania (retencja).
+*   **Warunki Wstępne:** Użytkownik jest zalogowany i ma przypisaną ścieżkę (np. "Java Developer").
+*   **Warunki Końcowe:** Użytkownik widzi interaktywną mapę zadań z zaznaczonym postępem.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Widok Ścieżki Rozwoju**
         *   **GIVEN** nowy pracownik loguje się po raz pierwszy.
@@ -255,22 +297,37 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
         *   **THEN** widzi cel, opis, liczbę punktów XP oraz przycisk "Rozpocznij".
 
 #### **[US-ONB-02] Automatyczna Weryfikacja przez Git (Smart Check)**
-*   **Opis:** System zalicza zadania bez ingerencji człowieka, analizując aktywność w kodzie.
+*   **Tytuł:** Automatyczne zaliczanie zadań na podstawie aktywności w repozytorium.
+*   **Opis:** System integruje się z GitHub/GitLab i automatycznie weryfikuje wykonanie zadań technicznych.
+*   **Historyjka Użytkownika:**
+    *   Jako Lider Zespołu (Marta),
+    *   chcę, aby system sam sprawdzał, czy junior skonfigurował środowisko (np. zrobił commita),
+    *   abym nie musiała ręcznie przeglądać repozytoriów każdej nowej osoby.
+*   **Cel Biznesowy:** Oszczędność czasu mentorów (ok. 5h/pracownika) i natychmiastowa informacja zwrotna dla pracownika.
+*   **Warunki Wstępne:** Użytkownik połączył swoje konto Git z systemem.
+*   **Warunki Końcowe:** Zadanie zmienia status na "Zaliczone", a pracownik otrzymuje punkty XP.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Poprawny Commit**
         *   **GIVEN** zadanie wymaga commita z ID w treści wiadomości (np. "Fixes #123").
         *   **WHEN** pracownik wykonuje `git push`.
-        *   **THEN** system otrzymuje webhook.
-        *   **AND** parsuje wiadomość, znajduje ID.
+        *   **THEN** system otrzymuje webhook, parsuje wiadomość i znajduje ID.
         *   **AND** oznacza zadanie w systemie jako "Zaliczone".
-        *   **AND** wysyła pracownikowi gratulacje na Slacku ("Brawo! Pierwszy kod na produkcji!").
+        *   **AND** wysyła pracownikowi gratulacje.
     *   **SCENARIUSZ 2: Błędny Branch**
         *   **GIVEN** zadanie wymaga pracy na branchu `feature/onboarding`.
         *   **WHEN** pracownik pushuje na `main`.
         *   **THEN** system odrzuca zaliczenie i wysyła botem informację: "Pamiętaj o pracy na feature branchach!".
 
 #### **[US-ONB-03] Dashboard Lidera (Monitoring TtP)**
-*   **Opis:** Widok dla managera pokazujący, gdzie utknął nowy pracownik.
+*   **Tytuł:** Monitorowanie postępów zespołu w czasie rzeczywistym.
+*   **Opis:** Widok dla managera pozwalający szybko zidentyfikować pracowników, którzy mają problemy z wdrożeniem.
+*   **Historyjka Użytkownika:**
+    *   Jako Engineering Manager (Marcin),
+    *   chcę widzieć, kto utknął na etapie konfiguracji środowiska,
+    *   abym mógł proaktywnie zaoferować pomoc, zanim pracownik się zniechęci.
+*   **Cel Biznesowy:** Szybsza identyfikacja problemów wdrożeniowych (redukcja ryzyka wczesnej rezygnacji, tzw. "Ghosting").
+*   **Warunki Wstępne:** Lider ma przypisanych pracowników do swojego zespołu.
+*   **Warunki Końcowe:** Lider widzi aktualny status każdego członka zespołu.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Przegląd Zespołu**
         *   **GIVEN** Lider Zespołu otwiera zakładkę "Mój Zespół".
@@ -282,7 +339,15 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
         *   **AND** wysyła powiadomienie e-mail do lidera ("Pracownik X potrzebuje pomocy").
 
 #### **[US-ONB-04] Ankiety Satysfakcji (Feedback Loop)**
-*   **Opis:** Po zakończeniu etapu onboardingu pracownik otrzymuje mini-ankietę.
+*   **Tytuł:** Zbieranie informacji zwrotnej po zakończeniu onboardingu.
+*   **Opis:** Automatyczna ankieta (NPS + pytania otwarte) wysyłana do pracownika po zakończeniu procesu.
+*   **Historyjka Użytkownika:**
+    *   Jako Specjalista HR (Piotr),
+    *   chcę zbierać oceny procesu wdrożenia od pracowników,
+    *   abym mógł udoskonalać proces na podstawie twardych danych.
+*   **Cel Biznesowy:** Ciągłe doskonalenie procesu (Continuous Improvement) i wzrost wskaźnika eNPS.
+*   **Warunki Wstępne:** Pracownik ukończył 100% zadań w ścieżce.
+*   **Warunki Końcowe:** Wyniki ankiety są zapisane w bazie i widoczne w raportach zbiorczych.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Zbieranie Feedbacku**
         *   **GIVEN** pracownik ukończył ostatnie zadanie w procesie onboardingu.
@@ -290,32 +355,16 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
         *   **THEN** wyświetla modal z prośbą o ocenę procesu (NPS 0-10) i komentarz słowny.
         *   **AND** po wysłaniu wyniki są anonimizowane i trafiają do raportu HR.
 
-#### **[US-FUT-01] AI: Warianty tekstów (A/B Testing)**
-*   **Opis:** System generuje 3 warianty posta (np. profesjonalny, zabawny, krótki) i automatycznie wybiera ten, który statystycznie lepiej działa w danej branży.
-*   **Powód odrzucenia:** Wysoki koszt implementacji (wymaga zaawansowanego ML) przy niepewnej wartości na starcie.
-*   **Hipotetyczne Kryteria Akceptacji:**
-    *   **SCENARIUSZ:** Generowanie wariantów
-        *   **GIVEN** użytkownik ma gotowy szkic posta.
-        *   **WHEN** klika "Generuj warianty A/B".
-        *   **THEN** system tworzy 3 wersje: "Formalną", "Luźną", "Krótką".
+### 4.3. Kryteria Akceptacji i Priorytetyzacja (Model WSJF)
 
-#### **[US-FUT-02] Kreator Ścieżek Onboardingowych (Drag&Drop)**
-*   **Opis:** Wizualny edytor pozwalający HR "rysować" ścieżki rozwoju z klocków.
-*   **Powód odrzucenia:** W fazie MVP wystarczy prosta konfiguracja przez pliki YAML/JSON lub prosty formularz. Edytor wizualny to "wodotrysk" (Gold Plating).
-*   **Hipotetyczne Kryteria Akceptacji:**
-    *   **SCENARIUSZ:** Rysowanie ścieżki
-        *   **GIVEN** HR otwiera kreator wizualny.
-        *   **WHEN** przeciąga klocek "Zadanie Git" na oś czasu.
-        *   **THEN** system tworzy nowe zadanie w bazie danych powiązane z tym etapem.
-
-### 4.1. Priorytetyzacja wymagań
-
-Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji zdefiniowany jako:
+Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji WSJF (Weighted Shortest Job First), zdefiniowany jako:
 `Priorytet = (Korzyść + Kara) / (Koszt + Ryzyko)`
 
 Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 13).
 
-| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik | Decyzja MVP |
+#### 4.3.1. Tabela Priorytetyzacji Wymagań (Globalna)
+
+| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik WSJF | Decyzja MVP |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **US-EB-01** | EB | **Auto-generowanie postów z ofert** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
 | **US-EB-02** | EB | Harmonogramowanie publikacji | 13 | 13 | 5 | 3 | **3.25** | **TAK** |
@@ -327,7 +376,41 @@ Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 
 | **US-FUT-01** | EB | AI: Warianty tekstów (A/B) | 5 | 1 | 8 | 8 | **0.38** | NIE |
 | **US-FUT-02** | ONB | Kreator ścieżek (Drag&Drop) | 8 | 5 | 13 | 8 | **0.62** | NIE |
 
-**Wnioski:** Do zakresu MVP zakwalifikowano funkcje z wynikiem > 1.0. Koncentrujemy się na automatyzacji (wysoka korzyść) przy akceptowalnym poziomie ryzyka. Funkcje skomplikowane technicznie (Kreator, AI A/B) przesunięto do v2.0.
+**Wnioski:** Do zakresu MVP zakwalifikowano funkcje z wynikiem WSJF > 1.0. Koncentrujemy się na automatyzacji (wysoka korzyść) przy akceptowalnym poziomie ryzyka. Funkcje skomplikowane technicznie (Kreator, AI A/B) przesunięto do v2.0.
+
+### 4.4. Funkcjonalności Odrzucone / Przesunięte (Future Scope)
+
+#### **[US-FUT-01] AI: Warianty tekstów (A/B Testing)**
+*   **Tytuł:** Optymalizacja treści postów za pomocą testów A/B generowanych przez AI.
+*   **Opis:** System generuje 3 warianty posta (np. profesjonalny, zabawny, krótki) i automatycznie wybiera ten, który statystycznie lepiej działa.
+*   **Historyjka Użytkownika:**
+    *   Jako Specjalista Marketingu,
+    *   chcę testować różne wersje komunikatów,
+    *   abym mógł maksymalizować zasięg bez ręcznego pisania wielu wersji.
+*   **Cel Biznesowy:** Zwiększenie współczynnika zaangażowania (Engagement Rate) o 15% poprzez lepsze dopasowanie treści.
+*   **Decyzja:** **ODRZUCONO W MVP**
+*   **Powód odrzucenia:** Wysoki koszt implementacji (wymaga zaawansowanego ML) przy niepewnej wartości na starcie.
+*   **Hipotetyczne Kryteria Akceptacji:**
+    *   **SCENARIUSZ:** Generowanie wariantów
+        *   **GIVEN** użytkownik ma gotowy szkic posta.
+        *   **WHEN** klika "Generuj warianty A/B".
+        *   **THEN** system tworzy 3 wersje: "Formalną", "Luźną", "Krótką".
+
+#### **[US-FUT-02] Kreator Ścieżek Onboardingowych (Drag&Drop)**
+*   **Tytuł:** Wizualny kreator procesów wdrożeniowych.
+*   **Opis:** Wizualny edytor pozwalający HR "rysować" ścieżki rozwoju z klocków bez edycji plików konfiguracyjnych.
+*   **Historyjka Użytkownika:**
+    *   Jako HR Manager,
+    *   chcę łatwo zmieniać kolejność zadań wdrożeniowych metodą "przeciągnij i upuść",
+    *   abym nie musiał prosić IT o każdą zmianę w procesie.
+*   **Cel Biznesowy:** Zwiększenie elastyczności działu HR w modyfikowaniu procesów.
+*   **Decyzja:** **ODRZUCONO W MVP**
+*   **Powód odrzucenia:** W fazie MVP wystarczy prosta konfiguracja przez pliki YAML/JSON. Edytor wizualny to "Gold Plating".
+*   **Hipotetyczne Kryteria Akceptacji:**
+    *   **SCENARIUSZ:** Rysowanie ścieżki
+        *   **GIVEN** HR otwiera kreator wizualny.
+        *   **WHEN** przeciąga klocek "Zadanie Git" na oś czasu.
+        *   **THEN** system tworzy nowe zadanie w bazie danych powiązane z tym etapem.
 
 ---
 
