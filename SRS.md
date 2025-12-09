@@ -410,7 +410,7 @@ Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji zdef
 
 Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 13).
 
-| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik WSJF | Decyzja MVP |
+| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik | Decyzja MVP |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **US-EB-01** | EB | **Auto-generowanie postów z ofert** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
 | **US-EB-02** | EB | Harmonogramowanie publikacji | 13 | 13 | 5 | 3 | **3.25** | **TAK** |
