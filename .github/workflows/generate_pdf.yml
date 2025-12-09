@@ -34,7 +34,20 @@ jobs:
 
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
-
         with:
           name: SRS-Document-PDF
           path: SRS.pdf
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "v${{ steps.date.outputs.date }}"
+          name: "SRS Document v${{ steps.date.outputs.date }}"
+          files: SRS.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
