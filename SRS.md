@@ -206,12 +206,7 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
 
 ## 4. Wymagania Funkcjonalne
 
-Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany według modułów i priorytetyzowany metodą MoSCoW.
-
-### 4.1. Moduł Employer Branding (EB)
-
 #### **[US-EB-01] Automatyczne generowanie postów z ofert pracy**
-*   **Priorytet:** Must Have (Krytyczny dla MVP)
 *   **Opis:** System jako "Agent" monitoruje listę ofert pracy. Gdy pojawi się nowa oferta, automatycznie generuje szkic posta.
 *   **Kryteria Akceptacji (Gherkin):**
     *   **SCENARIUSZ 1: Wykrycie nowej oferty**
@@ -224,7 +219,6 @@ Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany 
         *   **THEN** system nie generuje posta i loguje ostrzeżenie dla administratora.
 
 #### **[US-EB-02] Harmonogramowanie i Multi-publikacja**
-*   **Priorytet:** Must Have
 *   **Opis:** Użytkownik może zaplanować publikację jednego posta na wiele platform (LinkedIn, FB, IG) jednym kliknięciem.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Publikacja natychmiastowa**
@@ -238,25 +232,29 @@ Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany 
         *   **AND** wysyła powiadomienie do użytkownika, jeśli po 3 próbach nadal jest błąd.
 
 #### **[US-EB-03] Import Historii Sukcesu (Employee Advocacy)**
-*   **Priorytet:** Should Have
 *   **Opis:** Formularz dla pracowników do zgłaszania swoich sukcesów (np. "Zrobiliśmy wdrożenie u klienta X"), które HR może zamienić w post.
 *   **Kryteria Akceptacji:**
-    *   Pracownik wypełnia prosty formularz (Kto, Co, Zdjęcie).
-    *   Zgłoszenie trafia do "Poczekalni" w panelu HR.
-    *   HR może jednym kliknięciem "Generuj Post" zamienić zgłoszenie w gotowy draft social media.
-
-### 4.2. Moduł Onboarding (ONB)
+    *   **SCENARIUSZ 1: Zgłoszenie sukcesu**
+        *   **GIVEN** pracownik wypełnia formularz "Podziel się sukcesem" (opis, zdjęcie).
+        *   **WHEN** klika "Wyślij do HR".
+        *   **THEN** zgłoszenie pojawia się w "Centrum Akceptacji" na dashboardzie HR.
+    *   **SCENARIUSZ 2: Transformacja w post**
+        *   **GIVEN** HR przegląda zgłoszenie od pracownika.
+        *   **WHEN** wybiera opcję "Utwórz post AI".
+        *   **THEN** system generuje roboczą wersję posta zgodną z tone-of-voice firmy.
 
 #### **[US-ONB-01] Interaktywne Questy Wdrożeniowe**
-*   **Priorytet:** Must Have
 *   **Opis:** Prezentacja listy zadań w formie grywalizowanej.
 *   **Kryteria Akceptacji:**
-    *   Widok pracownika pokazuje listę zadań pogrupowaną w etapy (np. "Dzień 1", "Tydzień 1").
-    *   Zablokowane etapy (kłódka) są niedostępne dopóki nie ukończy się poprzednich.
-    *   Każde zadanie ma: Tytuł, Opis, Liczbę punktów XP, Warunki zaliczenia.
+    *   **SCENARIUSZ 1: Widok Ścieżki Rozwoju**
+        *   **GIVEN** nowy pracownik loguje się po raz pierwszy.
+        *   **THEN** widzi mapę zadań podzieloną na etapy (np. "Start", "Tydzień 1").
+        *   **AND** zadania z przyszłych etapów są widoczne, ale zablokowane (ikona kłódki).
+    *   **SCENARIUSZ 2: Szczegóły Zadania**
+        *   **WHEN** pracownik klika w aktywne zadanie.
+        *   **THEN** widzi cel, opis, liczbę punktów XP oraz przycisk "Rozpocznij".
 
 #### **[US-ONB-02] Automatyczna Weryfikacja przez Git (Smart Check)**
-*   **Priorytet:** Must Have (Kluczowa innowacja)
 *   **Opis:** System zalicza zadania bez ingerencji człowieka, analizując aktywność w kodzie.
 *   **Kryteria Akceptacji:**
     *   **SCENARIUSZ 1: Poprawny Commit**
@@ -272,20 +270,64 @@ Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany 
         *   **THEN** system odrzuca zaliczenie i wysyła botem informację: "Pamiętaj o pracy na feature branchach!".
 
 #### **[US-ONB-03] Dashboard Lidera (Monitoring TtP)**
-*   **Priorytet:** Should Have
 *   **Opis:** Widok dla managera pokazujący, gdzie utknął nowy pracownik.
 *   **Kryteria Akceptacji:**
-    *   Tabela wszystkich "Onboardees".
-    *   Kolumna "Ostatnia aktywność" (np. "2 dni temu").
-    *   Alertowanie: Jeśli pracownik nie zrobił postępu przez 3 dni, system podświetla go na czerwono.
+    *   **SCENARIUSZ 1: Przegląd Zespołu**
+        *   **GIVEN** Lider Zespołu otwiera zakładkę "Mój Zespół".
+        *   **THEN** widzi listę nowych pracowników ze statusem (np. "Etap 2/5").
+        *   **AND** widzi kolumnę "Ostatnia aktywność" (np. "2 godz. temu").
+    *   **SCENARIUSZ 2: Alert o przestoju**
+        *   **GIVEN** pracownik nie wykonał żadnej akcji przez 3 dni robocze.
+        *   **THEN** system podświetla wiersz pracownika na czerwono.
+        *   **AND** wysyła powiadomienie e-mail do lidera ("Pracownik X potrzebuje pomocy").
 
 #### **[US-ONB-04] Ankiety Satysfakcji (Feedback Loop)**
-*   **Priorytet:** Could Have (Dla MVP: prosta ankieta)
 *   **Opis:** Po zakończeniu etapu onboardingu pracownik otrzymuje mini-ankietę.
 *   **Kryteria Akceptacji:**
-    *   Pytanie NPS ("Jak bardzo poleciłbyś ten proces...").
-    *   Pytanie otwarte ("Co było najtrudniejsze?").
-    *   Wyniki są agregowane w panelu HR.
+    *   **SCENARIUSZ 1: Zbieranie Feedbacku**
+        *   **GIVEN** pracownik ukończył ostatnie zadanie w procesie onboardingu.
+        *   **WHEN** system zmienia globalny status na "Wdrożony".
+        *   **THEN** wyświetla modal z prośbą o ocenę procesu (NPS 0-10) i komentarz słowny.
+        *   **AND** po wysłaniu wyniki są anonimizowane i trafiają do raportu HR.
+
+#### **[US-FUT-01] AI: Warianty tekstów (A/B Testing)**
+*   **Opis:** System generuje 3 warianty posta (np. profesjonalny, zabawny, krótki) i automatycznie wybiera ten, który statystycznie lepiej działa w danej branży.
+*   **Powód odrzucenia:** Wysoki koszt implementacji (wymaga zaawansowanego ML) przy niepewnej wartości na starcie.
+*   **Hipotetyczne Kryteria Akceptacji:**
+    *   **SCENARIUSZ:** Generowanie wariantów
+        *   **GIVEN** użytkownik ma gotowy szkic posta.
+        *   **WHEN** klika "Generuj warianty A/B".
+        *   **THEN** system tworzy 3 wersje: "Formalną", "Luźną", "Krótką".
+
+#### **[US-FUT-02] Kreator Ścieżek Onboardingowych (Drag&Drop)**
+*   **Opis:** Wizualny edytor pozwalający HR "rysować" ścieżki rozwoju z klocków.
+*   **Powód odrzucenia:** W fazie MVP wystarczy prosta konfiguracja przez pliki YAML/JSON lub prosty formularz. Edytor wizualny to "wodotrysk" (Gold Plating).
+*   **Hipotetyczne Kryteria Akceptacji:**
+    *   **SCENARIUSZ:** Rysowanie ścieżki
+        *   **GIVEN** HR otwiera kreator wizualny.
+        *   **WHEN** przeciąga klocek "Zadanie Git" na oś czasu.
+        *   **THEN** system tworzy nowe zadanie w bazie danych powiązane z tym etapem.
+
+### 4.1. Priorytetyzacja wymagań
+
+Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji zdefiniowany jako:
+`Priorytet = (Korzyść + Kara) / (Koszt + Ryzyko)`
+
+Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 13).
+
+| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik | Decyzja MVP |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **US-EB-01** | EB | **Auto-generowanie postów z ofert** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
+| **US-EB-02** | EB | Harmonogramowanie publikacji | 13 | 13 | 5 | 3 | **3.25** | **TAK** |
+| **US-EB-03** | EB | Import historii sukcesu | 8 | 5 | 3 | 2 | **2.60** | **TAK** |
+| **US-ONB-01** | ONB | **Questy wdrożeniowe (Lista)** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
+| **US-ONB-02** | ONB | **Auto-weryfikacja (Git)** | 13 | 8 | 8 | 8 | **1.31** | **TAK** |
+| **US-ONB-03** | ONB | Dashboard Lidera (TtP) | 8 | 8 | 5 | 3 | **2.00** | **TAK** |
+| **US-ONB-04** | ONB | Ankiety Satysfakcji | 5 | 3 | 3 | 2 | **1.60** | **TAK** |
+| **US-FUT-01** | EB | AI: Warianty tekstów (A/B) | 5 | 1 | 8 | 8 | **0.38** | NIE |
+| **US-FUT-02** | ONB | Kreator ścieżek (Drag&Drop) | 8 | 5 | 13 | 8 | **0.62** | NIE |
+
+**Wnioski:** Do zakresu MVP zakwalifikowano funkcje z wynikiem > 1.0. Koncentrujemy się na automatyzacji (wysoka korzyść) przy akceptowalnym poziomie ryzyka. Funkcje skomplikowane technicznie (Kreator, AI A/B) przesunięto do v2.0.
 
 ---
 
