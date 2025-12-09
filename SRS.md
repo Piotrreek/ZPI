@@ -91,7 +91,23 @@ Aby zapewnić jednoznaczne zrozumienie dokumentu, wprowadza się następujące d
 ## 2. Opis Ogólny
 
 ### 2.1. Główne Funkcje Produktu
-Architektura systemu jest modułowa, integrująca dwa światy: rekrutację (EB/HR) i inżynierię (Dev). Główne bloki funkcjonalne przedstawiono na diagramie poniżej:
+Architektura systemu jest modułowa. Główne bloki funkcjonalne to:
+
+1.  **Generator Treści (Content Engine):**
+    *   Pobieranie danych z ofert pracy (tytuł, opis, wymagania).
+    *   Przetwarzanie danych na posty social media (tekst + grafika).
+    *   Mechanizm szablonów postów.
+2.  **Harmonogram i Publikacja (Scheduler):**
+    *   Kalendarz publikacji (widok miesięczny/tygodniowy).
+    *   Kolejkowanie postów.
+    *   Obsługa błędów API (retry mechanism).
+3.  **Silnik Onboardingowy (Gamification Engine):**
+    *   Drzewo zadań (ścieżki rozwoju).
+    *   System nagród i odznak.
+    *   Integratory z zewnętrznymi API (GitHub, GitLab, Jira).
+4.  **Analityka i Raportowanie (Dashboard):**
+    *   Agregacja danych z social media (API Facebook/LinkedIn).
+    *   wizualizacja postępów pracowników (wykresy burndown, paski postępu).
 
 ```mermaid
 mindmap
@@ -120,8 +136,6 @@ mindmap
         Ankiety Satysfakcji
         eNPS
 ```
-
-Szczegółowa specyfikacja tych funkcjonalności znajduje się w **Rozdziale 4**.
 
 ### 2.2. Klasy Użytkowników i Persony
 Zidentyfikowano trzy główne grupy użytkowników oraz przygotowano dla nich szczegółowe persony.
