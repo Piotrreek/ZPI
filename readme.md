@@ -9,6 +9,9 @@
   <a href="https://github.com/Piotrreek/ZPI/issues">
     <img alt="Issues" src="https://img.shields.io/github/issues/Piotrreek/ZPI?color=0088ff" />
   </a>
+  <a href="https://github.com/Piotrreek/ZPI/issues?q=is%3Aissue+is%3Aclosed">
+    <img alt="Closed Issues" src="https://img.shields.io/github/issues-closed/Piotrreek/ZPI?color=28a745" />
+  </a>
   <a href="https://github.com/Piotrreek/ZPI/pulls">
     <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Piotrreek/ZPI?color=0088ff" />
   </a>
