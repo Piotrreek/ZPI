@@ -383,9 +383,7 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
     *   chcę testować różne wersje komunikatów,
     *   abym mógł maksymalizować zasięg bez ręcznego pisania wielu wersji.
 *   **Cel Biznesowy:** Zwiększenie współczynnika zaangażowania (Engagement Rate) o 15% poprzez lepsze dopasowanie treści.
-*   **Decyzja:** **ODRZUCONO W MVP**
-*   **Powód odrzucenia:** Wysoki koszt implementacji (wymaga zaawansowanego ML) przy niepewnej wartości na starcie.
-*   **Hipotetyczne Kryteria Akceptacji:**
+*   **Kryteria Akceptacji:**
     *   **SCENARIUSZ:** Generowanie wariantów
         *   **GIVEN** użytkownik ma gotowy szkic posta.
         *   **WHEN** klika "Generuj warianty A/B".
@@ -399,9 +397,7 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
     *   chcę łatwo zmieniać kolejność zadań wdrożeniowych metodą "przeciągnij i upuść",
     *   abym nie musiał prosić IT o każdą zmianę w procesie.
 *   **Cel Biznesowy:** Zwiększenie elastyczności działu HR w modyfikowaniu procesów.
-*   **Decyzja:** **ODRZUCONO W MVP**
-*   **Powód odrzucenia:** W fazie MVP wystarczy prosta konfiguracja przez pliki YAML/JSON. Edytor wizualny to "Gold Plating".
-*   **Hipotetyczne Kryteria Akceptacji:**
+*   **Kryteria Akceptacji:**
     *   **SCENARIUSZ:** Rysowanie ścieżki
         *   **GIVEN** HR otwiera kreator wizualny.
         *   **WHEN** przeciąga klocek "Zadanie Git" na oś czasu.
