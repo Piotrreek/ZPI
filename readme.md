@@ -1,13 +1,10 @@
 
 <p align="center">
-  <a href="https://github.com/Piotrreek/ZPI/actions">
-    <img alt="Tests Passing" src="https://github.com/Piotrreek/ZPI/workflows/Test/badge.svg" />
+  <a href="https://github.com/Piotrreek/ZPI/actions/workflows/generate_pdf.yml">
+    <img alt="Generate PDF workflow status" src="https://github.com/Piotrreek/ZPI/actions/workflows/generate_pdf.yml/badge.svg" />
   </a>
   <a href="https://github.com/Piotrreek/ZPI/graphs/contributors">
     <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/Piotrreek/ZPI" />
-  </a>
-  <a href="https://codecov.io/gh/Piotrreek/ZPI">
-    <img alt="Tests Coverage" src="https://codecov.io/gh/Piotrreek/ZPI/branch/master/graph/badge.svg" />
   </a>
   <a href="https://github.com/Piotrreek/ZPI/issues">
     <img alt="Issues" src="https://img.shields.io/github/issues/Piotrreek/ZPI?color=0088ff" />
@@ -15,8 +12,8 @@
   <a href="https://github.com/Piotrreek/ZPI/pulls">
     <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Piotrreek/ZPI?color=0088ff" />
   </a>
-  <a href="https://securityscorecards.dev/viewer/?uri=github.com/Piotrreek/ZPI">
-    <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/Piotrreek/ZPI/badge" />
+  <a href="https://github.com/Piotrreek/ZPI/commits/main">
+    <img alt="Total commits" src="https://img.shields.io/github/commit-activity/t/Piotrreek/ZPI?label=commit+activity" />
   </a>
 </p>
 
