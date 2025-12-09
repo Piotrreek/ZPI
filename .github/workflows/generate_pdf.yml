@@ -1,0 +1,40 @@
+name: Generate PDF from SRS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+      - '**.html'
+      - 'IMGs/**'
+  workflow_dispatch:
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install md-to-pdf
+        run: |
+          npm install -g md-to-pdf
+          sudo apt-get update
+          sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libgbm1 libasound2 libpangocairo-1.0-0 libxss1 libgtk-3-0
+
+      - name: Convert SRS.md to PDF
+        run: |
+          md-to-pdf SRS.md --launch-options '{"args": ["--no-sandbox"]}'
+
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+
+        with:
+          name: SRS-Document-PDF
+          path: SRS.pdf
