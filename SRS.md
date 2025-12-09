@@ -202,3 +202,88 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
     *   Konieczności akceptacji posta (dla HR).
 
 ---
+
+## 4. Wymagania Funkcjonalne
+
+Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany według modułów i priorytetyzowany metodą MoSCoW.
+
+### 4.1. Moduł Employer Branding (EB)
+
+#### **[US-EB-01] Automatyczne generowanie postów z ofert pracy**
+*   **Priorytet:** Must Have (Krytyczny dla MVP)
+*   **Opis:** System jako "Agent" monitoruje listę ofert pracy. Gdy pojawi się nowa oferta, automatycznie generuje szkic posta.
+*   **Kryteria Akceptacji (Gherkin):**
+    *   **SCENARIUSZ 1: Wykrycie nowej oferty**
+        *   **GIVEN** w systemie dodano nową ofertę pracy na stanowisko "Senior DevOps".
+        *   **WHEN** proces "Content Generator" uruchamia się (np. co godzinę).
+        *   **THEN** w panelu "Propozycje" pojawia się nowy szkic posta.
+        *   **AND** szkic zawiera wygenerowany przez AI chwytliwy nagłówek, 3 kluczowe benefity z oferty i link do aplikowania.
+    *   **SCENARIUSZ 2: Brak danych w ofercie**
+        *   **GIVEN** oferta pracy ma pusty opis.
+        *   **THEN** system nie generuje posta i loguje ostrzeżenie dla administratora.
+
+#### **[US-EB-02] Harmonogramowanie i Multi-publikacja**
+*   **Priorytet:** Must Have
+*   **Opis:** Użytkownik może zaplanować publikację jednego posta na wiele platform (LinkedIn, FB, IG) jednym kliknięciem.
+*   **Kryteria Akceptacji:**
+    *   **SCENARIUSZ 1: Publikacja natychmiastowa**
+        *   **WHEN** użytkownik klika "Publikuj teraz"
+        *   **THEN** system wysyła żądania do wybranych API.
+        *   **AND** zwraca status "Opublikowano" tylko jeśli wszystkie API odpowiedziały 200 OK.
+    *   **SCENARIUSZ 2: Obsługa błędu API (Reliability)**
+        *   **GIVEN** API LinkedIn zwraca błąd 503 (Service Unavailable).
+        *   **THEN** system oznacza post jako "Błąd publikacji".
+        *   **AND** automatycznie ponawia próbę za 5 minut (mechanizm exponential backoff).
+        *   **AND** wysyła powiadomienie do użytkownika, jeśli po 3 próbach nadal jest błąd.
+
+#### **[US-EB-03] Import Historii Sukcesu (Employee Advocacy)**
+*   **Priorytet:** Should Have
+*   **Opis:** Formularz dla pracowników do zgłaszania swoich sukcesów (np. "Zrobiliśmy wdrożenie u klienta X"), które HR może zamienić w post.
+*   **Kryteria Akceptacji:**
+    *   Pracownik wypełnia prosty formularz (Kto, Co, Zdjęcie).
+    *   Zgłoszenie trafia do "Poczekalni" w panelu HR.
+    *   HR może jednym kliknięciem "Generuj Post" zamienić zgłoszenie w gotowy draft social media.
+
+### 4.2. Moduł Onboarding (ONB)
+
+#### **[US-ONB-01] Interaktywne Questy Wdrożeniowe**
+*   **Priorytet:** Must Have
+*   **Opis:** Prezentacja listy zadań w formie grywalizowanej.
+*   **Kryteria Akceptacji:**
+    *   Widok pracownika pokazuje listę zadań pogrupowaną w etapy (np. "Dzień 1", "Tydzień 1").
+    *   Zablokowane etapy (kłódka) są niedostępne dopóki nie ukończy się poprzednich.
+    *   Każde zadanie ma: Tytuł, Opis, Liczbę punktów XP, Warunki zaliczenia.
+
+#### **[US-ONB-02] Automatyczna Weryfikacja przez Git (Smart Check)**
+*   **Priorytet:** Must Have (Kluczowa innowacja)
+*   **Opis:** System zalicza zadania bez ingerencji człowieka, analizując aktywność w kodzie.
+*   **Kryteria Akceptacji:**
+    *   **SCENARIUSZ 1: Poprawny Commit**
+        *   **GIVEN** zadanie wymaga commita z ID w treści wiadomości (np. "Fixes #123").
+        *   **WHEN** pracownik wykonuje `git push`.
+        *   **THEN** system otrzymuje webhook.
+        *   **AND** parsuje wiadomość, znajduje ID.
+        *   **AND** oznacza zadanie w systemie jako "Zaliczone".
+        *   **AND** wysyła pracownikowi gratulacje na Slacku ("Brawo! Pierwszy kod na produkcji!").
+    *   **SCENARIUSZ 2: Błędny Branch**
+        *   **GIVEN** zadanie wymaga pracy na branchu `feature/onboarding`.
+        *   **WHEN** pracownik pushuje na `main`.
+        *   **THEN** system odrzuca zaliczenie i wysyła botem informację: "Pamiętaj o pracy na feature branchach!".
+
+#### **[US-ONB-03] Dashboard Lidera (Monitoring TtP)**
+*   **Priorytet:** Should Have
+*   **Opis:** Widok dla managera pokazujący, gdzie utknął nowy pracownik.
+*   **Kryteria Akceptacji:**
+    *   Tabela wszystkich "Onboardees".
+    *   Kolumna "Ostatnia aktywność" (np. "2 dni temu").
+    *   Alertowanie: Jeśli pracownik nie zrobił postępu przez 3 dni, system podświetla go na czerwono.
+
+#### **[US-ONB-04] Ankiety Satysfakcji (Feedback Loop)**
+*   **Priorytet:** Could Have (Dla MVP: prosta ankieta)
+*   **Opis:** Po zakończeniu etapu onboardingu pracownik otrzymuje mini-ankietę.
+*   **Kryteria Akceptacji:**
+    *   Pytanie NPS ("Jak bardzo poleciłbyś ten proces...").
+    *   Pytanie otwarte ("Co było najtrudniejsze?").
+    *   Wyniki są agregowane w panelu HR.
+
+---
