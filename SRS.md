@@ -208,10 +208,6 @@ System będzie nasłuchiwał na zdarzenia (Webhooks).
 
 ## 4. Wymagania Funkcjonalne
 
-Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany według modułów i priorytetyzowany metodą MoSCoW.
-
-### 4.1. Moduł Employer Branding (EB)
-
 #### **[US-EB-01] Automatyczne generowanie postów z ofert pracy**
 *   **Tytuł:** Automatyczne tworzenie szkiców postów na podstawie nowych ofert pracy.
 *   **Opis:** System jako "Agent" monitoruje listę ofert pracy. Gdy pojawi się nowa oferta, automatycznie generuje szkic posta w mediach społecznościowych.
@@ -274,8 +270,6 @@ Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany 
         *   **GIVEN** HR przegląda zgłoszenie od pracownika.
         *   **WHEN** wybiera opcję "Utwórz post AI".
         *   **THEN** system generuje roboczą wersję posta zgodną z tone-of-voice firmy.
-
-### 4.2. Moduł Onboarding (ONB)
 
 #### **[US-ONB-01] Interaktywne Questy Wdrożeniowe**
 *   **Tytuł:** Prezentacja zadań wdrożeniowych w formie grywalizacji.
@@ -355,31 +349,6 @@ Niniejsza sekcja zawiera kompletny wykaz wymagań funkcjonalnych, zorganizowany 
         *   **THEN** wyświetla modal z prośbą o ocenę procesu (NPS 0-10) i komentarz słowny.
         *   **AND** po wysłaniu wyniki są anonimizowane i trafiają do raportu HR.
 
-### 4.3. Kryteria Akceptacji i Priorytetyzacja (Model WSJF)
-
-Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji WSJF (Weighted Shortest Job First), zdefiniowany jako:
-`Priorytet = (Korzyść + Kara) / (Koszt + Ryzyko)`
-
-Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 13).
-
-#### 4.3.1. Tabela Priorytetyzacji Wymagań (Globalna)
-
-| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik WSJF | Decyzja MVP |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **US-EB-01** | EB | **Auto-generowanie postów z ofert** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
-| **US-EB-02** | EB | Harmonogramowanie publikacji | 13 | 13 | 5 | 3 | **3.25** | **TAK** |
-| **US-EB-03** | EB | Import historii sukcesu | 8 | 5 | 3 | 2 | **2.60** | **TAK** |
-| **US-ONB-01** | ONB | **Questy wdrożeniowe (Lista)** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
-| **US-ONB-02** | ONB | **Auto-weryfikacja (Git)** | 13 | 8 | 8 | 8 | **1.31** | **TAK** |
-| **US-ONB-03** | ONB | Dashboard Lidera (TtP) | 8 | 8 | 5 | 3 | **2.00** | **TAK** |
-| **US-ONB-04** | ONB | Ankiety Satysfakcji | 5 | 3 | 3 | 2 | **1.60** | **TAK** |
-| **US-FUT-01** | EB | AI: Warianty tekstów (A/B) | 5 | 1 | 8 | 8 | **0.38** | NIE |
-| **US-FUT-02** | ONB | Kreator ścieżek (Drag&Drop) | 8 | 5 | 13 | 8 | **0.62** | NIE |
-
-**Wnioski:** Do zakresu MVP zakwalifikowano funkcje z wynikiem WSJF > 1.0. Koncentrujemy się na automatyzacji (wysoka korzyść) przy akceptowalnym poziomie ryzyka. Funkcje skomplikowane technicznie (Kreator, AI A/B) przesunięto do v2.0.
-
-### 4.4. Funkcjonalności Odrzucone / Przesunięte (Future Scope)
-
 #### **[US-FUT-01] AI: Warianty tekstów (A/B Testing)**
 *   **Tytuł:** Optymalizacja treści postów za pomocą testów A/B generowanych przez AI.
 *   **Opis:** System generuje 3 warianty posta (np. profesjonalny, zabawny, krótki) i automatycznie wybiera ten, który statystycznie lepiej działa.
@@ -411,6 +380,27 @@ Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 
         *   **GIVEN** HR otwiera kreator wizualny.
         *   **WHEN** przeciąga klocek "Zadanie Git" na oś czasu.
         *   **THEN** system tworzy nowe zadanie w bazie danych powiązane z tym etapem.
+
+### 4.1. Priorytetyzacja wymagań
+
+Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji zdefiniowany jako:
+`Priorytet = (Korzyść + Kara) / (Koszt + Ryzyko)`
+
+Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 13).
+
+| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik WSJF | Decyzja MVP |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **US-EB-01** | EB | **Auto-generowanie postów z ofert** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
+| **US-EB-02** | EB | Harmonogramowanie publikacji | 13 | 13 | 5 | 3 | **3.25** | **TAK** |
+| **US-EB-03** | EB | Import historii sukcesu | 8 | 5 | 3 | 2 | **2.60** | **TAK** |
+| **US-ONB-01** | ONB | **Questy wdrożeniowe (Lista)** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
+| **US-ONB-02** | ONB | **Auto-weryfikacja (Git)** | 13 | 8 | 8 | 8 | **1.31** | **TAK** |
+| **US-ONB-03** | ONB | Dashboard Lidera (TtP) | 8 | 8 | 5 | 3 | **2.00** | **TAK** |
+| **US-ONB-04** | ONB | Ankiety Satysfakcji | 5 | 3 | 3 | 2 | **1.60** | **TAK** |
+| **US-FUT-01** | EB | AI: Warianty tekstów (A/B) | 5 | 1 | 8 | 8 | **0.38** | NIE |
+| **US-FUT-02** | ONB | Kreator ścieżek (Drag&Drop) | 8 | 5 | 13 | 8 | **0.62** | NIE |
+
+**Wnioski:** Do zakresu MVP zakwalifikowano funkcje z wynikiem > 1.0. Koncentrujemy się na automatyzacji (wysoka korzyść) przy akceptowalnym poziomie ryzyka. Funkcje skomplikowane technicznie (Kreator, AI A/B) przesunięto do v2.0.
 
 ---
 
