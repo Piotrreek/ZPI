@@ -114,14 +114,12 @@ mindmap
   root((System Zarządzania<br/>Cykl Życia Pracownika))
     Moduł Employer Branding (EB)
       Generator Treści AI
-        Import ofert z ATS
         Tworzenie wariantów postów
       Harmonogram Publikacji
         Integracja LinkedIn / FB
         Kalendarz postów
       Analityka Zasięgów
         Liczba wyświetleń
-        Konwersja kandydatów
     Moduł Onboarding (ONB)
       Ścieżki Rozwoju (Questy)
         Etapy wdrożenia
@@ -134,7 +132,6 @@ mindmap
         Alerty o blokadach
       Feedback
         Ankiety Satysfakcji
-        eNPS
 ```
 
 ### 2.2. Klasy Użytkowników i Persony
