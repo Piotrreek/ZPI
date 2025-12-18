@@ -1,6 +1,6 @@
 # Specyfikacja Wymagań Oprogramowania (SRS)
 ## System Zarządzania Cyklem Życia Pracownika: Strategie Rekrutacji i Rozwoju
-**Autorzy:** Jan Piaskowy, Piotr Gębalski, Mateusz Cholewa
+**Autorzy:** Jan Piaskowy, Piotr Gębalski, Mateusz Cholewa, Rafał Bogacz, Joanna Gniadek, 
 
 ---
 
