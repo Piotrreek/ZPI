@@ -1,5 +1,6 @@
 # Specyfikacja Wymagań Oprogramowania (SRS)
 ## System Zarządzania Cyklem Życia Pracownika: Strategie Rekrutacji i Rozwoju
+
 **Autorzy:** Jan Piaskowy, Piotr Gębalski, Mateusz Cholewa, Rafał Bogacz, Joanna Gniadek, Serhii Cherepiuk
 
 ---
@@ -87,6 +88,8 @@ Aby zapewnić jednoznaczne zrozumienie dokumentu, wprowadza się następujące d
 *   **Rozdział 5** określa wymagania niefunkcjonalne (Atrybuty Jakościowe).
 *   **Rozdział 6** przedstawia analizę rynku i konkurencji.
 *   **Rozdział 7** zawiera dodatkowe informacje, takie jak persony użytkowników i kwestie do rozwiązania.
+
+---
 
 ## 2. Opis Ogólny
 
@@ -410,17 +413,17 @@ Dla wszystkich zidentyfikowanych wymagań zastosowano model priorytetyzacji zdef
 
 Gdzie parametry szacowane są w relatywnej w skali Fibonacciego (1, 2, 3, 5, 8, 13).
 
-| ID | Moduł | Nazwa Funkcji | Korzyść | Kara | Koszt | Ryzyko | Wynik | Decyzja MVP |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **US-EB-01** | EB | **Auto-generowanie postów z ofert** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
-| **US-EB-02** | EB | Harmonogramowanie publikacji | 13 | 13 | 5 | 3 | **3.25** | **TAK** |
-| **US-EB-03** | EB | Import historii sukcesu | 8 | 5 | 3 | 2 | **2.60** | **TAK** |
-| **US-ONB-01** | ONB | **Questy wdrożeniowe (Lista)** | 13 | 13 | 8 | 5 | **2.00** | **TAK** |
-| **US-ONB-02** | ONB | **Auto-weryfikacja (Git)** | 13 | 8 | 8 | 8 | **1.31** | **TAK** |
-| **US-ONB-03** | ONB | Dashboard Lidera (TtP) | 8 | 8 | 5 | 3 | **2.00** | **TAK** |
-| **US-ONB-04** | ONB | Ankiety Satysfakcji | 5 | 3 | 3 | 2 | **1.60** | **TAK** |
-| **US-FUT-01** | EB | AI: Warianty tekstów (A/B) | 5 | 1 | 8 | 8 | **0.38** | NIE |
-| **US-FUT-02** | ONB | Kreator ścieżek (Drag&Drop) | 8 | 5 | 13 | 8 | **0.62** | NIE |
+| ID            | Moduł | Nazwa Funkcji                       | Korzyść | Kara  | Koszt | Ryzyko | Wynik    | Decyzja MVP |
+| :---          | :---  | :---                                | :---:   | :---: | :---: | :---:  | :---:    | :---:       |
+| **US-EB-01**  | EB    | **Auto-generowanie postów z ofert** | 13      | 13    | 8     | 5      | **2.00** | **TAK**     |
+| **US-EB-02**  | EB    | Harmonogramowanie publikacji        | 13      | 13    | 5     | 3      | **3.25** | **TAK**     |
+| **US-EB-03**  | EB    | Import historii sukcesu             | 8       | 5     | 3     | 2      | **2.60** | **TAK**     |
+| **US-ONB-01** | ONB   | **Questy wdrożeniowe (Lista)**      | 13      | 13    | 8     | 5      | **2.00** | **TAK**     |
+| **US-ONB-02** | ONB   | **Auto-weryfikacja (Git)**          | 13      | 8     | 8     | 8      | **1.31** | **TAK**     |
+| **US-ONB-03** | ONB   | Dashboard Lidera (TtP)              | 8       | 8     | 5     | 3      | **2.00** | **TAK**     |
+| **US-ONB-04** | ONB   | Ankiety Satysfakcji                 | 5       | 3     | 3     | 2      | **1.60** | **TAK**     |
+| **US-FUT-01** | EB    | AI: Warianty tekstów (A/B)          | 5       | 1     | 8     | 8      | **0.38** | NIE         |
+| **US-FUT-02** | ONB   | Kreator ścieżek (Drag&Drop)         | 8       | 5     | 13    | 8      | **0.62** | NIE         |
 
 **Wnioski:** Do zakresu MVP zakwalifikowano funkcje z wynikiem > 1.0. Koncentrujemy się na automatyzacji (wysoka korzyść) przy akceptowalnym poziomie ryzyka. Funkcje skomplikowane technicznie (Kreator, AI A/B) przesunięto do v2.0.
 
@@ -491,6 +494,8 @@ Przeprowadzono analizę konkurencyjnych rozwiązań na rynku, aby zidentyfikowa�
 ### 6.2. Wnioski Strategiczne
 1.  **Unique Selling Point (USP):** Na rynku brakuje narzędzia, które "domyka pętlę" między rekrutacją a wdrożeniem. Narzędzia EB kończą się na publikacji posta, a narzędzia onboardingowe zaczynają się pierwszego dnia pracy. Nasz system łączy te światy, wykorzystując treści z rekrutacji w onboardingu i historie z onboardingu w rekrutacji.
 2.  **Szansa Rynkowa:** Automatyzacja "nudnej roboty" (pisanie postów) dla HR oraz automatyzacja "niańczenia juniorów" dla Senior Devów to silne argumenty sprzedażowe.
+
+---
 
 ## 7. Dodatki
 
