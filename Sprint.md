@@ -78,7 +78,7 @@
     - [ELP-53](https://zpi-recruitment.atlassian.net/browse/ELP-53) Implement consent UI + persistence
     - [ELP-54](https://zpi-recruitment.atlassian.net/browse/ELP-54) Implement hard-delete endpoint + cascade rules
 
-![EPIC ELP-3](http://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-5.PNG)
+![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-5.PNG)
 
 - **EPIC** [ELP-5](https://zpi-recruitment.atlassian.net/browse/ELP-5) External Integrations (MVP/PoC) [21]
 
@@ -102,7 +102,7 @@
 
 - Roadmapa w Jirze zaplanowana na 3 miesiące : [Employee Lifecycle Platform Roadmap](https://zpi-recruitment.atlassian.net/jira/software/projects/ELP/boards/1/timeline)
 
-![Roadmap](path/to/image)
+![Roadmap](https://github.com/Piotrreek/ZPI/blob/main/IMGs/Road-Map.PNG)
 
 ## 2. Proof of concept
 
