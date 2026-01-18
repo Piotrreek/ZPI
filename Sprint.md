@@ -65,7 +65,7 @@
     - [ELP-35](https://zpi-recruitment.atlassian.net/browse/ELP-35) Implement survey UI + validation
     - [ELP-36](https://zpi-recruitment.atlassian.net/browse/ELP-36) Store responses + anonymization step
 
-![EPIC ELP-3](path/to/image)
+![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-4.PNG)
 
 - **EPIC** [ELP-4](https://zpi-recruitment.atlassian.net/browse/ELP-4) Security, Reliability & MVP Reporting [16]
 
@@ -78,7 +78,7 @@
     - [ELP-53](https://zpi-recruitment.atlassian.net/browse/ELP-53) Implement consent UI + persistence
     - [ELP-54](https://zpi-recruitment.atlassian.net/browse/ELP-54) Implement hard-delete endpoint + cascade rules
 
-![EPIC ELP-3](path/to/image)
+![EPIC ELP-3](http://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-5.PNG)
 
 - **EPIC** [ELP-5](https://zpi-recruitment.atlassian.net/browse/ELP-5) External Integrations (MVP/PoC) [21]
 
