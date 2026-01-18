@@ -37,7 +37,7 @@
     - [ELP-17](https://zpi-recruitment.atlassian.net/browse/ELP-17) Implement update schedule API with validation
     - [ELP-18](https://zpi-recruitment.atlassian.net/browse/ELP-18) Implement calendar UI (week view minimum) + Drag&drop
 
-![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-1.PNG)
+![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-1.PNG) 
 
 - **EPIC** [ELP-3](https://zpi-recruitment.atlassian.net/browse/ELP-3) Gamified Onboarding & Development (MVP) [39]
 
