@@ -131,7 +131,7 @@ Weryfikacja technicznej wykonalności integracji głównych elementów systemu p
 
 - Plan w Jira : [Sprint ELP-1](https://zpi-recruitment.atlassian.net/jira/software/projects/ELP/boards/1/backlog)
 
-![Sprint](path/to/image)
+![Sprint](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-Sprint-1.PNG)
 
 - [ELP-48](https://zpi-recruitment.atlassian.net/browse/ELP-48) SSO Login via Azure AD (No Local Passwords)
 - [ELP-41](https://zpi-recruitment.atlassian.net/browse/ELP-41) LinkedIn Publishing Connector (PoC)
