@@ -37,7 +37,7 @@
     - [ELP-17](https://zpi-recruitment.atlassian.net/browse/ELP-17) Implement update schedule API with validation
     - [ELP-18](https://zpi-recruitment.atlassian.net/browse/ELP-18) Implement calendar UI (week view minimum) + Drag&drop
 
-![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-3.PNG)
+![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-1.PNG)
 
 - **EPIC** [ELP-3](https://zpi-recruitment.atlassian.net/browse/ELP-3) Gamified Onboarding & Development (MVP) [39]
 
@@ -65,7 +65,7 @@
     - [ELP-35](https://zpi-recruitment.atlassian.net/browse/ELP-35) Implement survey UI + validation
     - [ELP-36](https://zpi-recruitment.atlassian.net/browse/ELP-36) Store responses + anonymization step
 
-![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-4.PNG)
+![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-3.PNG)
 
 - **EPIC** [ELP-4](https://zpi-recruitment.atlassian.net/browse/ELP-4) Security, Reliability & MVP Reporting [16]
 
@@ -78,7 +78,7 @@
     - [ELP-53](https://zpi-recruitment.atlassian.net/browse/ELP-53) Implement consent UI + persistence
     - [ELP-54](https://zpi-recruitment.atlassian.net/browse/ELP-54) Implement hard-delete endpoint + cascade rules
 
-![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-5.PNG)
+![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-4.PNG)
 
 - **EPIC** [ELP-5](https://zpi-recruitment.atlassian.net/browse/ELP-5) External Integrations (MVP/PoC) [21]
 
@@ -96,7 +96,7 @@
     - [ELP-46](https://zpi-recruitment.atlassian.net/browse/ELP-46) Implement notification dispatcher (in-app first)
     - [ELP-47](https://zpi-recruitment.atlassian.net/browse/ELP-47) Implement Slack/Teams webhook connector (optional)
 
-![EPIC ELP-3](path/to/image)
+![EPIC ELP-3](https://github.com/Piotrreek/ZPI/blob/main/IMGs/ELP-5.PNG)
 
 ### 1.2 Roadmapa dla EPICów
 
